@@ -1,0 +1,40 @@
+{
+  "name": "nyt-react",
+  "version": "1.0.0",
+  "description": "New York Times Web App made with the MERN (MongoDB, Express, React, and Node) Stack",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marioaburto10/nyt-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marioaburto10/nyt-react/issues"
+  },
+  "homepage": "https://github.com/marioaburto10/nyt-react#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.20",
+    "morgan": "^1.7.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1"
+  },
+  "devDependencies": {
+    "axios": "^0.12.0",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "webpack -w",
+    "dev": "webpack & node server.js"
+  }
+}
