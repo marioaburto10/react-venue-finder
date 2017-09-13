@@ -16,13 +16,13 @@
   "homepage": "https://github.com/marioaburto10/nyt-react#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
-    "express": "^4.13.4",
+    "express": "^4.15.4",
     "mongoose": "^4.4.20",
     "morgan": "^1.7.0",
+    "process-nextick-args": "^1.0.7",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-router": "^2.4.1",
-    "semver": "^5.4.1"
+    "react-router": "^2.8.1"
   },
   "devDependencies": {
     "axios": "^0.12.0",
