@@ -7,8 +7,25 @@ class Query extends React.Component {
 		this.state = {
 			keyword: "",
 			zipCode: "",
-			radius: ""
+			radius: "5"
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event) {
+		console.log("Change in Text");
+		var newState = {};
+		newState[event.target.id] = event.target.value;
+		this.setState(newState);
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log("Submit button clicked");
+		this.props.setTerms(this.state.keyword, this.state.zipCode, this.state.radius);
+
 	}
 
 	render() {
@@ -26,14 +43,15 @@ class Query extends React.Component {
 							</div>
 						
 							<div className="panel-body">
-								<form>
+								<form onSubmit={this.handleSubmit}>
 									<div className="form-group">
 										<h4 className=""><strong>Keyword</strong></h4>
 										<input
 							                type="text"
-							                className="form-control text-center"
+							                className="form-control"
 							                id="keyword"
 							                value={this.state.term}
+							                onChange={this.handleChange}
 							                required
 						              	/>
 
@@ -48,7 +66,7 @@ class Query extends React.Component {
 					                    />
 
 					                    <h4><strong>Radius</strong></h4>
-										  <select className="form-control" id="radius" defaultValue="10">
+										  <select className="form-control" id="radius" value={this.state.radius} onChange={this.handleChange}>
 										    <option>5</option>
 										    <option>10</option>
 										    <option>20</option>

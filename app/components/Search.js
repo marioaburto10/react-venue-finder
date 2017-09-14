@@ -11,12 +11,15 @@ class Search extends React.Component {
 		}
 	}
 
+	setTerms(keyword, zipCode, radius){
+		console.log("received in Search ", keyword, zipCode, radius);
+	}
 
 	render() {
 		return (
 			<div className="main-container">
 
-		        <Query />
+		        <Query setTerms={this.setTerms} />
 
 		        <Results />
 	      	</div>
