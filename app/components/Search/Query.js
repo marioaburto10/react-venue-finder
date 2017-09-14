@@ -37,25 +37,23 @@ class Query extends React.Component {
 							                required
 						              	/>
 
-						              	<h4><strong>ZipCode</strong></h4>
+						              	<h4><strong>Zip Code</strong></h4>
 					                    <input
 					                      type="number"
 					                      value={this.state.start}
 					                      className="form-control"
-					                      id="start"
+					                      id="zipCode"
 					                      onChange={this.handleChange}
 					                      required
 					                    />
 
 					                    <h4><strong>Radius</strong></h4>
-										<input
-					                      type="number"
-					                      value={this.state.end}
-					                      className="form-control"
-					                      id="end"
-					                      onChange={this.handleChange}
-					                      required
-					                    />
+										  <select className="form-control" id="radius" defaultValue="10">
+										    <option>5</option>
+										    <option>10</option>
+										    <option>20</option>
+										    <option>30</option>
+										  </select>
 
 				                  	</div>
 
