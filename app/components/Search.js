@@ -20,6 +20,10 @@ class Search extends React.Component {
 			const lat = data.lat;
 			const lng = data.lng;
 			console.log(lat, lng);
+
+			helpers.findVenues(keyword, lat, lng, radius).then((data) => {
+				console.log("data coming from setTerms findVenues" , data)
+			})
 		});
 	}
 

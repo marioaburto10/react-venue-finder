@@ -3,6 +3,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var request = require('request');
+
 
 // Require Schemas
 var Article = require("./models/Article");
@@ -37,56 +39,80 @@ db.once("open", function() {
 
 // -------------------------------------------------
 
-// Route to get all saved articles
-app.get("/api/saved", function(req, res) {
+// Route to get venues from google places AP
+// Note: API call has to be done in the back-end and not with helpers as google does not allow calls from the front-end. *Trust me, had to learn the hard way.
+app.post("/api/places", function(req, res) {
 
- Article.find({})
-    .exec(function(err, doc) {
+  var keyword = req.body.keyword;
+  var lat = req.body.lat;
+  var lng = req.body.lng;
+  // going from miles to meters as per the google maps API
+  var radius = req.body.radius * 1609.344;
+  console.log(keyword, lat, lng, radius);
 
-     if (err) {
-        console.log(err);
-      }
-      else {
-        res.send(doc);
-      }
+  var googlePlacesAPI = "AIzaSyCYeih3P-UfimZCY3kIBSFwKugLXM-5VbY";
+
+  var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius="+ radius + "&keyword="+ keyword + "&opennow=true&key=" + googlePlacesAPI;
+
+  request(queryURL, function (error, response, body) {
+     if (error) {
+      console.log(error);
+     }
+
+      res.send(body);
     });
 });
 
-// Route to add an article to saved list
-app.post("/api/saved", function(req, res) {
-  var newArticle = new Article(req.body);
+// // Route to get all saved articles
+// app.get("/api/saved", function(req, res) {
 
- console.log(req.body);
+//  Article.find({})
+//     .exec(function(err, doc) {
 
- newArticle.save(function(err, doc) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send(doc);
-    }
-  });
-});
+//      if (err) {
+//         console.log(err);
+//       }
+//       else {
+//         res.send(doc);
+//       }
+//     });
+// });
 
-// Route to delete an article from saved list
-app.delete("/api/saved/", function(req, res) {
+// // Route to add an article to saved list
+// app.post("/api/saved", function(req, res) {
+//   var newArticle = new Article(req.body);
 
- var url = req.param("url");
+//  console.log(req.body);
 
- Article.find({ url: url }).remove().exec(function(err) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send("Deleted");
-    }
-  });
-});
+//  newArticle.save(function(err, doc) {
+//     if (err) {
+//       console.log(err);
+//     }
+//     else {
+//       res.send(doc);
+//     }
+//   });
+// });
 
-// Any non API GET routes will be directed to our React App and handled by React Router
-app.get("*", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
+// // Route to delete an article from saved list
+// app.delete("/api/saved/", function(req, res) {
+
+//  var url = req.param("url");
+
+//  Article.find({ url: url }).remove().exec(function(err) {
+//     if (err) {
+//       console.log(err);
+//     }
+//     else {
+//       res.send("Deleted");
+//     }
+//   });
+// });
+
+// // Any non API GET routes will be directed to our React App and handled by React Router
+// app.get("*", function(req, res) {
+//   res.sendFile(__dirname + "/public/index.html");
+// });
 
 
 // -------------------------------------------------
