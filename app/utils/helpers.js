@@ -51,6 +51,16 @@ const helpers = {
 	        }
 	      });
 
+	},
+
+	// This will save new venues to our database
+	postSaved: function(name, icon, address) {
+	var newVenue = { name: name, icon: icon, address: address };
+	return axios.post("/api/saved", newVenue)
+	  .then(function(response) {
+	    console.log("axios results", response.data._id);
+	    return response.data._id;
+	  });
 	}
 };
 

@@ -6,8 +6,8 @@ var mongoose = require("mongoose");
 var request = require('request');
 
 
-// Require Schemas
-var Article = require("./models/Article");
+// Require Schema
+var Venue = require("./models/Venue");
 
 // Create Instance of Express
 var app = express();
@@ -25,7 +25,7 @@ app.use(express.static("public"));
 // -------------------------------------------------
 
 // MongoDB Configuration configuration
-mongoose.connect("mongodb://localhost/newnytreact");
+mongoose.connect("mongodb://localhost/react-venue-finder");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -81,6 +81,22 @@ app.post("/api/placeHourInfo", function(req, res) {
     });
 });
 
+// Route to add an venue to saved list
+app.post("/api/saved", function(req, res) {
+  var newVenue = new Venue(req.body);
+
+ console.log(req.body);
+
+ newVenue.save(function(err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(doc);
+    }
+  });
+});
+
 // // Route to get all saved articles
 // app.get("/api/saved", function(req, res) {
 
@@ -96,21 +112,7 @@ app.post("/api/placeHourInfo", function(req, res) {
 //     });
 // });
 
-// // Route to add an article to saved list
-// app.post("/api/saved", function(req, res) {
-//   var newArticle = new Article(req.body);
 
-//  console.log(req.body);
-
-//  newArticle.save(function(err, doc) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     else {
-//       res.send(doc);
-//     }
-//   });
-// });
 
 // // Route to delete an article from saved list
 // app.delete("/api/saved/", function(req, res) {

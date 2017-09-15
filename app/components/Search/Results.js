@@ -10,10 +10,19 @@ class Results extends React.Component {
 			placeName: ""
 		};
 
-		this.modalClick = this.modalClick.bind(this);
+		this.viewHoursClick = this.viewHoursClick.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
-	modalClick(place){
+	handleClick(place){
+		console.log("Save button clicked");
+
+		helpers.postSaved(place.name, place.icon, place.vicinity).then((data) => {
+			console.log("place has been saved, this is the ID" , data);
+		});
+	}
+
+	viewHoursClick(place){
 		console.log("modal clicked" , place);
 
 		helpers.getVenueHours(place.reference).then((data) => {
@@ -43,10 +52,10 @@ class Results extends React.Component {
 		                <em>{place.vicinity}     </em>
 		              </span>
 		              <span className="btn-group pull-right">
-		                <button className="btn btn-warning" onClick={() => this.handleClick(article)}>Save</button>
+		                <button className="btn btn-warning" onClick={() => this.handleClick(place)}>Save</button>
 		              </span>
 		              <span className="btn-group pull-right">
-		                <button data-toggle="modal" data-target="#myModal" className="btn btn-success" onClick={() => this.modalClick(place)} >View Hours</button>
+		                <button data-toggle="modal" data-target="#myModal" className="btn btn-success" onClick={() => this.viewHoursClick(place)} >View Hours</button>
 		              
 						<div id="myModal" className="modal fade" role="dialog">
 						  <div className="modal-dialog">
