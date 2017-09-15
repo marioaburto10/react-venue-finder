@@ -59,7 +59,7 @@ class Saved extends React.Component {
 		  <li className="list-group-item">
 		    <h3>
 		      <span>
-		        <em>No saved venues yet, save your first venue...</em>
+		        <em>No saved venues yet, save your first venue from search results...</em>
 		      </span>
 		    </h3>
 		  </li>
@@ -115,27 +115,9 @@ class Saved extends React.Component {
 		          </span>
 
 		          <span className="btn-group pull-right">
-		              	<button type="button" className="btn btn-danger" data-toggle="modal" data-target="#myModal1" onClick={() => this.handleClick(place)}>Delete</button>
-		              	<div id="myModal1" className="modal fade" role="dialog">
-						  <div className="modal-dialog">
+		              	<button type="button" className="btn btn-danger" onClick={() => this.handleClick(place)}>Delete</button>
 
-						    <div className="modal-content">
-						      <div className="modal-header">
-						        <button type="button" className="close" data-dismiss="modal">&times;</button>
-						        <h2 className="modal-title text-center">Success!</h2>
-						      </div>
-						      <div className="modal-body">
-						        <p>{this.state.placeName} was deleted from your saved list.</p>
-						      </div>
-						      <div className="modal-footer">
-						        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-						      </div>
-						    </div>
-
-						  </div>
-						</div>
-
-		              </span>
+		          </span>
 		              <span className="btn-group pull-right">
 		                <button data-toggle="modal" data-target="#myModal" className="btn btn-success" onClick={() => this.viewHoursClick(place)} >View Hours</button>
 		              
@@ -191,7 +173,7 @@ class Saved extends React.Component {
 
 	render() {
     // If there are no venues saved, return this.renderEmpty() which in turn returns some HTML
-    if (!this.state.savedVenues) {
+    if (!this.state.savedVenues[0]) {
       return this.renderEmpty();
     }
     // If there are venues saved, return this.renderContainer() which in turn returns all saves Venues
