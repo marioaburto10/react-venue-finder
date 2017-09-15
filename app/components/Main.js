@@ -31,6 +31,7 @@ class Main extends React.Component {
                   {/* Using <Link> in place of <a> and "to" in place of "href" */}
                   <li><Link to="/search">Search</Link></li>
                   <li><Link to="/saved">Saved Venues</Link></li>
+                  <li><a href="https://github.com/marioaburto10/react-venue-finder">Github Repo</a></li>
 
                 </ul>
               </div>
