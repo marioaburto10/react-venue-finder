@@ -25,7 +25,7 @@ app.use(express.static("public"));
 // -------------------------------------------------
 
 // MongoDB Configuration configuration
-mongoose.connect("mongodb://localhost/react-venue-finder");
+mongoose.connect("mongodb://localhost/mongodb://heroku_vk2ndsq5:n9cblcgr9j5p5r6lj5t9qqfklk@ds139124.mlab.com:39124/heroku_vk2ndsq5");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
