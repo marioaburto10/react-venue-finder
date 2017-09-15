@@ -34,6 +34,23 @@ const helpers = {
 	        }
 	      });
 
+	},
+
+	getVenueHours: (placeReference) => {
+		console.log(placeReference);
+
+		// const placeID = place.id;
+
+		return axios.post("/api/placeHourInfo", {placeReference: placeReference})
+	      .then(function(results) {
+	        console.log("axios results in getVenueHous", results.data.result.opening_hours.weekday_text);
+	      	if (!results.data.result.opening_hours.weekday_text[0]) {
+	        	return "Sorry there are no hours listed for this venue"
+	        } else {
+	        	return results.data.result.opening_hours.weekday_text;
+	        }
+	      });
+
 	}
 };
 

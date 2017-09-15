@@ -63,6 +63,24 @@ app.post("/api/places", function(req, res) {
     });
 });
 
+app.post("/api/placeHourInfo", function(req, res) {
+
+  var placeReference = req.body.placeReference;
+  console.log(placeReference);
+
+  var googlePlacesAPI = "AIzaSyCYeih3P-UfimZCY3kIBSFwKugLXM-5VbY";
+
+  var detailsURL = "https://maps.googleapis.com/maps/api/place/details/json?reference=" + placeReference + "&key=" + googlePlacesAPI;
+                                                                                    
+  request(detailsURL, function (error, response, body) {
+     if (error) {
+      console.log(error);
+     }
+
+      res.send(body);
+    });
+});
+
 // // Route to get all saved articles
 // app.get("/api/saved", function(req, res) {
 
