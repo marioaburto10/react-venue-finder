@@ -11,7 +11,7 @@ const helpers = {
 		console.log(zipCode);
 
 		// Figure out the geolocation
-	    const queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + zipCode + "&pretty=1&key=" + geocodeAPI;
+	    const queryURL = "https://api.opencagedata.com/geocode/v1/json?query=" + zipCode + "&pretty=1&key=" + geocodeAPI;
 
 	    return axios.get(queryURL).then((response) => {
 	    	console.log("Axios response" , response.data.results);
