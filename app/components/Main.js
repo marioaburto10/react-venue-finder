@@ -30,7 +30,7 @@ class Main extends React.Component {
                 <ul className="nav navbar-nav navbar-right">
                   {/* Using <Link> in place of <a> and "to" in place of "href" */}
                   <li><Link to="/search">Search</Link></li>
-                  <li><Link to="/saved">Saved Articles</Link></li>
+                  <li><Link to="/saved">Saved Venues</Link></li>
 
                 </ul>
               </div>

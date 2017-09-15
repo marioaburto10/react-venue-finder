@@ -25,6 +25,21 @@ class Saved extends React.Component {
 		}.bind(this));
 	}
 
+	handleClick(place){
+		console.log("Delete button clicked");
+
+		this.setState({ placeName: place.name });
+
+		helpers.deleteSaved(place.reference).then((data) => {
+			
+			// Get the revised list!
+			helpers.getSaved().then(function(venueData) {
+				this.setState({ savedVenues: venueData.data });
+				console.log("saved results", venueData.data);
+			}.bind(this));
+		});
+	}
+
 	viewHoursClick(place){
 		console.log("modal clicked" , place);
 
@@ -97,21 +112,20 @@ class Saved extends React.Component {
 		          <span className="btn-group pull-right">
 		            <a href={place.url} rel="noopener noreferrer" target="_blank">
 		            </a>
-		            <button className="btn btn-primary" onClick={() => this.handleClick(article)}>Delete</button>
 		          </span>
 
 		          <span className="btn-group pull-right">
-		              	
+		              	<button type="button" className="btn btn-danger" data-toggle="modal" data-target="#myModal1" onClick={() => this.handleClick(place)}>Delete</button>
 		              	<div id="myModal1" className="modal fade" role="dialog">
 						  <div className="modal-dialog">
 
 						    <div className="modal-content">
 						      <div className="modal-header">
 						        <button type="button" className="close" data-dismiss="modal">&times;</button>
-						        <h2 className="modal-title text-center">Venue Was Saved!</h2>
+						        <h2 className="modal-title text-center">Success!</h2>
 						      </div>
 						      <div className="modal-body">
-						        <p>Please scroll up and click the Saved link to view your saved venues.</p>
+						        <p>{this.state.placeName} was deleted from your saved list.</p>
 						      </div>
 						      <div className="modal-footer">
 						        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

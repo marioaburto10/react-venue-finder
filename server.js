@@ -114,25 +114,25 @@ app.get("/api/saved", function(req, res) {
 
 
 
-// // Route to delete an article from saved list
-// app.delete("/api/saved/", function(req, res) {
+// Route to delete an venues from saved list
+app.delete("/api/saved/", function(req, res) {
 
-//  var url = req.param("url");
+ var reference = req.param("reference");
 
-//  Article.find({ url: url }).remove().exec(function(err) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     else {
-//       res.send("Deleted");
-//     }
-//   });
-// });
+ Venue.find({ reference: reference }).remove().exec(function(err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send("Deleted");
+    }
+  });
+});
 
-// // Any non API GET routes will be directed to our React App and handled by React Router
-// app.get("*", function(req, res) {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
+// Any non API GET routes will be directed to our React App and handled by React Router
+app.get("*", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 
 // -------------------------------------------------

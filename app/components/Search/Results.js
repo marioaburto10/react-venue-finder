@@ -17,6 +17,8 @@ class Results extends React.Component {
 	handleClick(place){
 		console.log("Save button clicked");
 
+		this.setState({ placeName: place.name});
+
 		helpers.postSaved(place.name, place.icon, place.vicinity, place.reference).then((data) => {
 			console.log("place has been saved, this is the ID" , data);
 		});
@@ -60,7 +62,7 @@ class Results extends React.Component {
 						    <div className="modal-content">
 						      <div className="modal-header">
 						        <button type="button" className="close" data-dismiss="modal">&times;</button>
-						        <h2 className="modal-title text-center">Venue Was Saved!</h2>
+						        <h2 className="modal-title text-center">{this.state.placeName} Was Saved!</h2>
 						      </div>
 						      <div className="modal-body">
 						        <p>Please scroll up and click the Saved link to view your saved venues.</p>
