@@ -53,13 +53,22 @@ const helpers = {
 
 	},
 
-	// This will save new venues to our database
-	postSaved: function(name, icon, address) {
-	var newVenue = { name: name, icon: icon, address: address };
+	// This will save new venues to the database
+	postSaved: function(name, icon, address, reference) {
+	var newVenue = { name: name, icon: icon, address: address, reference: reference };
 	return axios.post("/api/saved", newVenue)
 	  .then(function(response) {
 	    console.log("axios results", response.data._id);
 	    return response.data._id;
+	  });
+	},
+
+	// This will return any saved articles from the database
+	getSaved: function() {
+	return axios.get("/api/saved")
+	  .then(function(results) {
+	    console.log("axios results", results);
+	    return results;
 	  });
 	}
 };

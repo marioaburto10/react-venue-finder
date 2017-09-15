@@ -11,6 +11,9 @@ var VenueSchema = new Schema({
   },
   address: {
     type: String
+  },
+  reference: {
+  	type: String
   }
 });
 

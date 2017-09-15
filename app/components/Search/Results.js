@@ -17,7 +17,7 @@ class Results extends React.Component {
 	handleClick(place){
 		console.log("Save button clicked");
 
-		helpers.postSaved(place.name, place.icon, place.vicinity).then((data) => {
+		helpers.postSaved(place.name, place.icon, place.vicinity, place.reference).then((data) => {
 			console.log("place has been saved, this is the ID" , data);
 		});
 	}
@@ -49,10 +49,10 @@ class Results extends React.Component {
 		              </span>
 		              <br />
 		              <span>
-		                <em>{place.vicinity}     </em>
+		                <em>{place.vicinity}</em>
 		              </span>
 		              <span className="btn-group pull-right">
-		                <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#myModal1">Save</button>
+		                <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#myModal1" onClick={() => this.handleClick(place)}>Save</button>
 		              	
 		              	<div id="myModal1" className="modal fade" role="dialog">
 						  <div className="modal-dialog">
@@ -84,7 +84,7 @@ class Results extends React.Component {
 						    <div className="modal-content">
 						      <div className="modal-header">
 						        <button type="button" className="close" data-dismiss="modal">&times;</button>
-						        <h3 className="modal-title">{this.state.placeName} Hours</h3>
+						        <h3 className="modal-title text-center">{this.state.placeName} Hours</h3>
 						      </div>
 						      <div className="modal-body">
 						        <ul>
