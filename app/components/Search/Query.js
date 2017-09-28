@@ -65,7 +65,7 @@ class Query extends React.Component {
 					                      required
 					                    />
 
-					                    <h4><strong>Radius</strong></h4>
+					                    <h4><strong>Radius (miles)</strong></h4>
 										  <select className="form-control" id="radius" value={this.state.radius} onChange={this.handleChange}>
 										    <option>5</option>
 										    <option>10</option>
