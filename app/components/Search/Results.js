@@ -175,9 +175,23 @@ class Results extends React.Component {
 	          </h3>
 	        </li>
 	      );
+
+	      // if there are no matches found, return this error message
+	    } else if (this.props.results == "Sorry no matches found, please try a different keyword or radius.") {
+	    	return (
+		        <li className="list-group-item">
+		          <h1 className="text-center">
+		            <span style={{color:"red"}}>
+		              <em>Sorry, no matches found. Please try a different keyword or radius.</em>
+		            </span>
+		          </h1>
+		        </li>
+		    );
+	    } else {
+	    	// If we have articles, return this.renderContainer() which in turn, returns all the articles
+	    	return this.renderContainer();
 	    }
-	    // If we have articles, return this.renderContainer() which in turn, returns all the articles
-	    return this.renderContainer();
+	    
 	}
 
 }
